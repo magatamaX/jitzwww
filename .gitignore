@@ -1,0 +1,57 @@
+# Linux #
+
+*~
+
+
+# Apple OS X #
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+
+._*
+.Spotlight-V100
+.Trashes
+
+
+# Microsoft Windows #
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+
+
+# CSS #
+
+*.map
+*.css.map
+
+
+# TextMate #
+
+*.tmproj
+*.tmproject
+tmtags
+
+
+# Sublime Text #
+
+*.sublime-workspace
+
+
+# npm & bower #
+
+*.log
+.tmp/
+node_modules/
+
+
+# prepros #
+prepros.cfg
+prepros-6.config
