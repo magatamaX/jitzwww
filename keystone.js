@@ -11,7 +11,7 @@ var keystone = require('keystone');
 
 keystone.init({
 	'name': 'jitz',
-	'brand': 'jitz',
+	'brand': '実務家Link',
 
 	'sass': 'public',
 	'static': 'public',
