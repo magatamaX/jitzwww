@@ -1,0 +1,26 @@
+header#header
+  .top
+    .top-contents
+      p.top-desc 法務・税務・労務のプロと企業を結ぶポータルサイト
+      ul.top-sitenavi
+        li
+          a(href="#") 本サイトについて
+        li
+          a(href="#") お問い合わせ
+        li
+          a(href="#") サイトマップ
+  .header-contents
+    .header-contents-inner
+      .main-title
+        h1
+          a(href="/")
+            | 実務家
+            span Link
+      //- .search
+      //-   form
+      //-     input(type="text" placeholder="記事を検索")
+      //-     label.search-icon(for="search_button")
+      //-       input(type="button" id="search_button")
+      #navi-toggle-btn.navi-toggle-btn
+        a(href="") メニュー
+      include header/navi/_navi
