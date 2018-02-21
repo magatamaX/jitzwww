@@ -24,6 +24,9 @@ keystone.init({
   'auth': true,
   'user model': 'User',
   'port': 36791,
+  
+  'wysiwyg images': true,
+  'wysiwyg menubar': true,
 
 });
 

@@ -407,6 +407,9 @@ header{
   padding: 7px 0;
   background: #efefef;
   font-size: 12px;
+  @include mq(){
+    padding: 7px;
+  }
   ul{
     width: 1080px;
     @include mq(){
@@ -456,8 +459,8 @@ header{
     width: 730px;
     padding: 0 50px 0 0;
     @include mq(){
-      width: 100%;
-      padding: 0;
+      width: auto;
+      padding: 0 10px;
       display: block;
     }
     #main-slide{
@@ -633,6 +636,7 @@ header{
             margin-bottom: 20px;
             @include mq(md){
               width: 49%;
+              max-width: none;
               margin-bottom: 10px;
             }
             &:after{

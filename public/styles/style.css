@@ -415,6 +415,9 @@ header#header .header-contents-inner {
   padding: 7px 0;
   background: #efefef;
   font-size: 12px; }
+  @media screen and (max-width: 768px) {
+    #breadCrumb {
+      padding: 7px; } }
   #breadCrumb ul {
     width: 1080px;
     margin: 0 auto; }
@@ -455,8 +458,8 @@ header#header .header-contents-inner {
     padding: 0 50px 0 0; }
     @media screen and (max-width: 768px) {
       #contents .main-contents {
-        width: 100%;
-        padding: 0;
+        width: auto;
+        padding: 0 10px;
         display: block; } }
     #contents .main-contents #main-slide .main-slide-area {
       width: 100%;
@@ -609,6 +612,7 @@ header#header .header-contents-inner {
           @media screen and (max-width: 600px) {
             #contents .main-contents #related .related-articles li {
               width: 49%;
+              max-width: none;
               margin-bottom: 10px; } }
           #contents .main-contents #related .related-articles li:after {
             content: "";
@@ -672,6 +676,7 @@ header#header .header-contents-inner {
           @media screen and (max-width: 600px) {
             #contents .main-contents #recommend .recommend-articles li {
               width: 49%;
+              max-width: none;
               margin-bottom: 10px; } }
           #contents .main-contents #recommend .recommend-articles li:after {
             content: "";
