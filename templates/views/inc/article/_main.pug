@@ -1,28 +1,34 @@
 main(role="main")
   article(id="article" class="article")
-    p: a(href='/blog') &larr; back to the blog
-    hr
     if !data.post
       h2 Invalid Post.
     else
-      header
-        h1= data.post.title
-        h5 Posted 
-          if data.post.publishedDate
-            | on #{data.post._.publishedDate.format('MMMM Do, YYYY')} 
-          if data.post.categories && data.post.categories.length
-            | in 
-            each cat, cat_i in data.post.categories
-              a(href='/blog/' + cat.key)= cat.name
-              if cat_i < data.post.categories.length - 1
-                | , 
-              else
-                |  
-          if data.post.author
-            | by #{data.post.author.name.first}
-      .post
+      .article-info
+        if data.post.categories && data.post.categories.length
+          each cat, cat_i in data.post.categories
+            span.genre= cat.name
+        if data.post.publishedDate
+          span.date= data.post._.publishedDate.format('MMMM Do, YYYY')
+        .sns-area
+      h2.article-title
+        span.sub-title sub-title
+        | #{data.post.title}
+      .writer
+        .writer-image
+          p
+            img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc01", alt="")
+        .writer-info
+          p.writer-name
+            | #{data.post.author.name.first}
+            span.office （△△△△△△所属）
+          p.writer-profile
+            | 著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール
+          p.writer-website
+            a(href="" target="_blank") 著者サイトへのリンク
+      .main-image
         if data.post.image.exists
-          .image-wrap: img(src=data.post._.image.fit(750,450)).img-responsive
+          p: img(src=data.post._.image.fit(), alt="")
+      section.text
         != data.post.content.full
     .article-subcontents
       p ※著者に関連するサブコンテンツ等のスペース
