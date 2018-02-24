@@ -8,7 +8,7 @@ main(role="main")
           each cat, cat_i in data.post.categories
             span.genre= cat.name
         if data.post.publishedDate
-          span.date= data.post._.publishedDate.format('MMMM Do, YYYY')
+          span.date= data.post._.publishedDate.format('YYYY年MM月DD日')
         .sns-area
       h2.article-title
         span.sub-title sub-title
