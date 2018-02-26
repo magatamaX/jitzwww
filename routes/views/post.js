@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var async = require('async');
 
 exports = module.exports = function (req, res) {
 
@@ -12,6 +13,7 @@ exports = module.exports = function (req, res) {
 	};
 	locals.data = {
 		posts: [],
+    recommend: [],
 	};
 
 	// Load the current post
@@ -32,12 +34,22 @@ exports = module.exports = function (req, res) {
 	// Load other posts
 	view.on('init', function (next) {
 
-		var q = keystone.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
+    var r = keystone.list('Post').paginate({
+      page: req.query.page || 1,
+      perPage: 6,
+      maxPages: 1,
+      filters: {
+        state: 'published',
+        recommend: 'recommend',
+      },
+    })
+      .sort('-publishedDate')
+      .populate('author categories');
 
-		q.exec(function (err, results) {
-			locals.data.posts = results;
-			next(err);
-		});
+    r.exec(function (err, results) {
+      locals.data.recommend = results;
+      next(err);
+    });
 
 	});
 

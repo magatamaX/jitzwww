@@ -30,104 +30,31 @@ main(role="main")
   section#new
     h2 新着記事
     ul.new-articles
-      li
-        a(href="/article/01/01.html")
-          .new-article-image
-            img(src="/images/common/230x173_01.jpg", alt="")
-          .new-article-introduction
-            p.new-article-icon
-              span.houmu 法務
-              span.business ビジネス
-            h3.new-article-title 中小企業は規模より&quot;質&quot;で勝負！
-            p.new-article-aside
-              span.date 2017.12.2
-              span.series この起業家精神が活路を拓く 第2回
-              span.series-option （最終回）
-            p.new-article-description
-              | 中小企業は資金がない、優秀な（一流大学出身の）人材がこない。「だから、中小企業は大企業に勝てない」と考えているとしたら、それはとんでもない間違いである。いっけん不利な条件も、視点を変えれば中小企業…
-      li
-        a(href="/article/01/02.html")
-          .new-article-image
-            img(src="/images/common/230x173_02.jpg", alt="")
-          .new-article-introduction
-            p.new-article-icon
-              span.zeimu 税務
-            h3.new-article-title 得手分野を見定め、極めれば、アリも巨象に勝つ
-            p.new-article-aside
-              span.date 2017.06.25
-              span.series この起業家精神が活路を拓く 第1回
-            p.new-article-description
-              | かつて小さな町工場だったマブチモーターや島精機製作所は、どうして世界に名を知られる大企業となることができたのか。そこにこそ、中小企業が大企業に勝つためのヒントがある。
-      li
-        a(href="/article/02/01.html")
-          .new-article-image
-            img(src="/images/common/230x173_03.jpg", alt="")
-          .new-article-introduction
-            p.new-article-icon
-              span.roumu 労務
-              span.skill 基礎知識
-            h3.new-article-title 印鑑、印章、印影…それぞれの意味は？
-            p.new-article-aside
-              span.date 2017.11.30
-              span.series ハンコの基礎知識 第2回
-              span.series-option （最終回）
-            p.new-article-description
-              | ビジネスで、日常で、ハンコを使う機会は多くあります。ですが、うっかり判を押すと深刻なトラブルに巻き込まれることもあるので注意が必要です。ハンコの基礎知識を確認しておきましょう。
-      li
-        a(href="/article/02/02.html")
-          .new-article-image
-            img(src="/images/common/230x173_04.jpg", alt="")
-          .new-article-introduction
-            p.new-article-icon
-              span.skill スキル
-            h3.new-article-title 押印と捺印、記名と署名はどう違う？
-            p.new-article-aside
-              span.date 2017.11.29
-              span.series ハンコの基礎知識 第1回
-            p.new-article-description
-              | どちらもハンコを押すことを指しますが、「押印」はやや改まった感じ、「捺印」のほうがしっくりくるという人もおられるのではないでしょうか。そもそも戦前までは、印を押すことを「捺印」といっていました。…
-      li
-        a(href="/article/03/01.html")
-          .new-article-image
-            img(src="/images/common/230x173_05.jpg", alt="")
-          .new-article-introduction
-            p.new-article-icon
-              span.business 専門家コラム
-            h3.new-article-title 黄金の国ジパングは本当だった！金の産地を示す地名
-            p.new-article-aside
-              span.date 2017.11.28
-              span.series 地名を歩く 第2回
-              span.series-option （最終回）
-            p.new-article-description
-              | 日本列島の鉱山地図を見ると、無数と言えるほど産金ポイントが記されている。したがって、地名もまた産金と関わるものが多く残されている。奥多摩に行ったとき、湖のほとりの郷土資料館を見て驚いた。産地特有の農具…
-      li
-        a(href="/article/03/02.html")
-          .new-article-image
-            img(src="/images/common/230x173_06.jpg", alt="")
-          .new-article-introduction
-            p.new-article-icon
-              span.business ビジネス
-            h3.new-article-title 色がつく地名の近くに金銀銅山あり!?
-            p.new-article-aside
-              span.date 2017.11.27
-              span.series 地名を歩く 第1回
-            p.new-article-description
-              | 無数の金山が眠っていた日本列島。地下を探るハイテク機械のなかった時代、鉱山師は土の色や地形を頼りに金銀銅山を見つけた。その名残の地名とは…？
-      li
-        a(href="/article/01/01.html")
-          .new-article-image
-            img(src="/images/common/230x173_01.jpg", alt="")
-          .new-article-introduction
-            p.new-article-icon
-              span.houmu 法務
-              span.business ビジネス
-            h3.new-article-title もう50歳？ まだ50歳？ 悩める50代のためのライフプランニング
-            p.new-article-aside
-              span.date 2017.06.25
-              span.series 50歳からのキャリアプランニング 第10回
-              span.series-option （最終回）
-            p.new-article-description
-              | 50代って若いのでしょうか？ それともシニアなのでしょうか？ 筆者が学生だった1970年代、企業の定年は55歳（！）でした。50代は現役生活とリタイア生活の両方を味わう世代だったのです。なんと女性ならば…
+      each post in data.posts.results
+        li
+          a(href='/blog/post/' + post.slug)
+              div.new-article-image
+                if post.image.exists
+                  img(src=post._.image.fit()).img.pull-right
+              div.new-article-introduction
+                h3.new-article-title= post.title
+                p.lead.text-muted Posted 
+                  if post.publishedDate
+                    | on #{post._.publishedDate.format('YYYY年MM月DD日')} 
+                  if post.categories && post.categories.length
+                    | in 
+                    each cat, i in post.categories
+                      span= cat.name
+                      if i < post.categories.length - 1
+                        | , 
+                      else
+                        |  
+                  if post.author
+                    | by #{post.author.name.first}
+
+                p!= post.content.brief
+                if post.content.extended
+                  p.read-more:  Read more...
     .pager
       ul
         li.current
