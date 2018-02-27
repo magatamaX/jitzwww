@@ -30,7 +30,7 @@ main(role="main")
                 | SERIES-OPTION
               span.series-author
                 if post.author
-                  | #{post.author.name.first}
+                  | #{post.author.japanese}
             p.new-article-description!= post.content.brief
         if data.category
           a(href='/articles/' + data.category.key + '/' + post.slug)

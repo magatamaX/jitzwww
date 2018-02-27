@@ -6,7 +6,7 @@ html(lang="ja")
     // /OGP
     title
       if filters.category && !data.category
-        | 不正なカテゴリ名です。｜実務家Link
+        | このカテゴリーは存在しません。｜実務家Link
       else
         if data.posts.results.length
           if data.category

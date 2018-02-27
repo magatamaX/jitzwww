@@ -1,7 +1,7 @@
 main(role="main")
   article(id="article" class="article")
     if !data.post
-      h2 Invalid Post.
+      h2.article-title 存在しないページです。
     else
       .article-info
         if data.post.categories && data.post.categories.length
@@ -17,18 +17,20 @@ main(role="main")
       h2.article-title
         span.sub-title sub-title
         | #{data.post.title}
-      .writer
-        .writer-image
-          p
-            img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc01", alt="")
-        .writer-info
-          p.writer-name
-            | #{data.post.author.name.first}
-            span.office （△△△△△△所属）
-          p.writer-profile
-            | 著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール著者プロフィール
-          p.writer-website
-            a(href="" target="_blank") 著者サイトへのリンク
+      if data.post.author
+        .writer
+          .writer-image
+            p
+              img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc01", alt="")
+          .writer-info
+            .writer-name
+              | #{data.post.author.japanese}
+              span.office （#{data.post.author.company}）
+            .writer-profile
+              != data.post.author.profile
+            if data.post.author.website
+              .writer-website
+                a(href=data.post.author.website.url target="_blank") #{data.post.author.website.title}
       .main-image
         if data.post.image.exists
           p: img(src=data.post._.image.fit(), alt="")
