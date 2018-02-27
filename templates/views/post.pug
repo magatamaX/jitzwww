@@ -4,7 +4,15 @@ html(lang="ja")
     include inc/_meta
     // OGP
     // /OGP
-    title ○○○○○○ | 実務家Link
+    title
+      | #{data.post.title}｜
+      if data.post.categories.length
+        if data.post.categories[0].japanese
+          | #{data.post.categories[0].japanese}｜実務家Link
+        else
+          | #{data.post.categories[0].name}｜実務家Link
+      else
+        |｜実務家Link
     //- link(rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosansjapanese.css")
     link(rel="stylesheet" href="/styles/style.css")
   body

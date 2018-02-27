@@ -19,10 +19,14 @@ var _ = require('lodash');
 */
 exports.initLocals = function (req, res, next) {
   res.locals.navLinks = [
-    { label: 'Home', key: 'home', href: '/' },
-    { label: 'Blog', key: 'blog', href: '/blog' },
-    { label: 'Gallery', key: 'gallery', href: '/gallery' },
-    { label: 'Contact', key: 'contact', href: '/contact' },
+    { label: 'TOP', key: 'home', href: '/' },
+    { label: '記事', key: 'blog', href: '/blog' },
+    { label: 'ギャラリー', key: 'gallery', href: '/gallery' },
+    { label: 'お問い合わせ', key: 'contact', href: '/contact' },
+    { label: '法務', key: 'legal', href: '/legal' },
+    { label: '税務', key: 'tax', href: '/tax' },
+    { label: '労務', key: 'labor', href: '/labor' },
+    { label: 'ビジネス', key: 'business', href: '/business' },
   ];
   res.locals.user = req.user;
   next();

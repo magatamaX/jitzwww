@@ -1,34 +1,43 @@
 main(role="main")
   section#new
-    h2 新着記事
+    h2
+      if data.category
+        if data.category.japanese
+          | #{data.category.japanese}
+        else
+          | #{data.category.name}
+      else
+        | 新着記事一覧
     mixin post(post)
       li
-        a(href='/blog/post/' + post.slug)
-            div.new-article-image
-              if post.image.exists
-                img(src=post._.image.fit()).img.pull-right
-            div.new-article-introduction
-              p.new-article-icon
-                if post.categories && post.categories.length
-                  each cat, i in post.categories
-                    span= cat.name
-                    if i < post.categories.length - 1
-                      | , 
-                    else
-                      |  
-              h3.new-article-title= post.title
-              p.new-article-aside
-                span.date
-                  if post.publishedDate
-                    | #{post._.publishedDate.format('YYYY年MM月DD日')}
-                span.series
-                  | SERIES NAME
-                span.series-option
-                  | SERIES-OPTION
-                span.series-author
-                  if post.author
-                    | #{post.author.name.first}
-              p.new-article-description!= post.content.brief
+        mixin naiIchiran()
+          div.new-article-image
+            if post.image.exists
+              img(src=post._.image.fit()).img.pull-right
+          div.new-article-introduction
+            p.new-article-icon
+              if post.categories && post.categories.length
+                each cat, i in post.categories
+                  span= cat.japanese
+            h3.new-article-title= post.title
+            p.new-article-aside
+              span.date
+                if post.publishedDate
+                  | #{post._.publishedDate.format('YYYY年MM月DD日')}
+              span.series
+                | SERIES NAME
+              span.series-option
+                | SERIES-OPTION
+              span.series-author
+                if post.author
+                  | #{post.author.name.first}
+            p.new-article-description!= post.content.brief
+        if data.category
+          a(href='/articles/' + data.category.key + '/' + post.slug)
+            +naiIchiran()
+        else
+          a(href='/articles/' + '-/' + post.slug)
+            +naiIchiran()
 
     block content
       if filters.category && !data.category

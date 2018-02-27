@@ -2,7 +2,13 @@ h2 おすすめ
 ul.recommend-articles
   each post in data.recommend.results
     li
-      a(href='/blog/post/' + post.slug)
-        if post.image.exists
-          img(src=post._.image.fit())
-        span= post.title
+      if post.categories.length
+        a(href='/articles/' + post.categories[0].key + '/' + post.slug)
+          if post.image.exists
+            img(src=post._.image.fit())
+          span= post.title
+      else
+        a(href='/articles/' + '-/' + post.slug)
+          if post.image.exists
+            img(src=post._.image.fit())
+          span= post.title

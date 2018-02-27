@@ -10,9 +10,11 @@ exports = module.exports = function (req, res) {
 	locals.section = 'blog';
 	locals.filters = {
 		post: req.params.post,
+    category: req.params.category,
 	};
 	locals.data = {
 		posts: [],
+    categories: [],
     recommend: [],
 	};
 
@@ -30,6 +32,19 @@ exports = module.exports = function (req, res) {
 		});
 
 	});
+  
+  // Load the current category filter
+  view.on('init', function (next) {
+
+    if (req.params.category) {
+      keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
+        locals.data.category = result;
+        next(err);
+      });
+    } else {
+      next();
+    }
+  });
 
 	// Load other posts
 	view.on('init', function (next) {

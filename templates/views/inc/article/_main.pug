@@ -6,7 +6,11 @@ main(role="main")
       .article-info
         if data.post.categories && data.post.categories.length
           each cat, cat_i in data.post.categories
-            span.genre= cat.name
+            span.genre
+              if cat.japanese
+                | #{cat.japanese}
+              else
+                | #{cat.name}
         if data.post.publishedDate
           span.date= data.post._.publishedDate.format('YYYY年MM月DD日')
         .sns-area

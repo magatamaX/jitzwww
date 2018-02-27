@@ -32,29 +32,34 @@ main(role="main")
     ul.new-articles
       each post in data.posts.results
         li
-          a(href='/blog/post/' + post.slug)
-              div.new-article-image
-                if post.image.exists
-                  img(src=post._.image.fit()).img.pull-right
-              div.new-article-introduction
-                h3.new-article-title= post.title
-                p.lead.text-muted Posted 
-                  if post.publishedDate
-                    | on #{post._.publishedDate.format('YYYY年MM月DD日')} 
-                  if post.categories && post.categories.length
-                    | in 
-                    each cat, i in post.categories
-                      span= cat.name
-                      if i < post.categories.length - 1
-                        | , 
-                      else
-                        |  
-                  if post.author
-                    | by #{post.author.name.first}
-
-                p!= post.content.brief
-                if post.content.extended
-                  p.read-more:  Read more...
+          mixin nai()
+            div.new-article-image
+              if post.image.exists
+                img(src=post._.image.fit()).img.pull-right
+            div.new-article-introduction
+              h3.new-article-title= post.title
+              p.lead.text-muted Posted 
+                if post.publishedDate
+                  | on #{post._.publishedDate.format('YYYY年MM月DD日')} 
+                if post.categories && post.categories.length
+                  | in 
+                  each cat, i in post.categories
+                    span= cat.name
+                    if i < post.categories.length - 1
+                      | , 
+                    else
+                      |  
+                if post.author
+                  | by #{post.author.name.first}
+              p!= post.content.brief
+              if post.content.extended
+                p.read-more:  Read more...
+          if post.categories.length
+            a(href='/articles/' + post.categories[0].key + '/' + post.slug)
+              +nai()
+          else
+            a(href='/articles/' + '-' + '/' + post.slug)
+              +nai()
     .pager
       ul
         li.current
