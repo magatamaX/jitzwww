@@ -15,7 +15,7 @@ Post.add({
   title: { type: String, required: true },
   state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
   recommend: { type: Types.Select, options: 'recommend', index: true },
-  // author: { type: Types.Relationship, ref: 'User', index: true },
+  author: { type: Types.Relationship, ref: 'Author', index: true },
   user: { type: Types.Relationship, ref: 'User', index: true },
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
   image: { type: Types.CloudinaryImage },
