@@ -1,6 +1,12 @@
-extends ../../layouts/default
+extends ../index
 
-block content
-  .container
-    h1 Error (500)
-    p.lead Sorry, the site has encountered an error.
+block mainContents
+  .main-contents
+    article#article.article
+      h2.article-title お探しのページは、現在表示できません。
+      section.text
+        | 現在、メンテナンス中もしくはサーバー障害のため、本ページをご覧いただくことができません。
+        br
+        | 恐れ入りますが、しばらく経ってから再度お試しください。
+        br
+        | 500 Internal Server Error.

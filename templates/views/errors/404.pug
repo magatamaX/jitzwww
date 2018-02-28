@@ -1,6 +1,12 @@
-extends ../../layouts/default
+extends ../index
 
-block content
-  .container
-    h1 404
-    p.lead Sorry, the page you requested can't be found.
+block mainContents
+  .main-contents
+    article#article.article
+      h2.article-title お探しのページが見つかりませんでした
+      section.text
+        | アドレスが正しく入力されていてもぺージが表示されない場合は、該当ページの公開期間が終了している可能性がございます。
+        br
+        | 恐れ入りますが、再度URLをお確かめください。
+        br
+        | 404 Page Not Found.

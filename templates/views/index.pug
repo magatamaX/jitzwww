@@ -11,8 +11,9 @@ html(lang="ja")
     include inc/_header
     #contents.clearfix
       // メインコンテンツ
-      .main-contents
-        include inc/index/_main
+      block mainContents
+        .main-contents
+          include inc/index/_main
       // /メインコンテンツ
       // サイドコンテンツ
       .side-contents
