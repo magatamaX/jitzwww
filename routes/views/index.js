@@ -27,7 +27,7 @@ exports = module.exports = function (req, res) {
         maxPages: 1,
         filters: {
           state: 'published',
-          recommend: 'recommend',
+          recommend: true,
         },
       })
         .sort('-publishedDate')

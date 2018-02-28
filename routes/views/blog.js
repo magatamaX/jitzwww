@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var async = require('async');
+var _ = require('lodash');
 
 exports = module.exports = function (req, res) {
 
@@ -32,6 +33,7 @@ exports = module.exports = function (req, res) {
 
         keystone.list('Post').model.count().where('categories').in([category.id]).exec(function (err, count) {
           category.postCount = count;
+          console.log('----------------'+category.japanese, count+'------------------');
           next(err);
         });
 
@@ -56,14 +58,27 @@ exports = module.exports = function (req, res) {
 
   // Load the posts
   view.on('init', function (next) {
+    
+    var _filters;
+
+    console.log(locals.data.category);
+    
+    if(!req.params.category){
+      _filters = {
+        state: 'published',
+      };
+    } else {
+      _filters = {
+        state: 'published',
+        categories: locals.data.category,
+      };
+    }
 
     var q = keystone.list('Post').paginate({
       page: req.query.page || 1,
       perPage: 10,
       maxPages: 10,
-      filters: {
-        state: 'published',
-      },
+      filters: _filters,
     })
       .sort('-publishedDate')
       .populate('author categories');
@@ -76,6 +91,7 @@ exports = module.exports = function (req, res) {
       locals.data.posts = results;
       next(err);
     });
+
   });
 
   // Render the view

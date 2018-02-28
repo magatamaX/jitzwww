@@ -7,6 +7,8 @@ var Types = keystone.Field.Types;
  */
 var Author = new keystone.List('Author', {
   autokey: { from: 'name', path: 'key', unique: true },
+  label: '著者',
+  plural: '著者',
 });
 
 Author.add({

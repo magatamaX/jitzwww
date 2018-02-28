@@ -1181,6 +1181,8 @@ footer#footer {
       .pager ul li.current a {
         background: #2E8622;
         color: #fff; }
+      .pager ul li.disabled {
+        display: none; }
 
 @keyframes slideprev {
   from {

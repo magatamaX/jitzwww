@@ -15,7 +15,8 @@ main(role="main")
           span.date= data.post._.publishedDate.format('YYYY年MM月DD日')
         .sns-area
       h2.article-title
-        span.sub-title sub-title
+        if data.post.subtitle
+          span.sub-title #{data.post.subtitle}
         | #{data.post.title}
       if data.post.author
         .writer
@@ -38,7 +39,7 @@ main(role="main")
         != data.post.content.full
     .article-subcontents
       p ※著者に関連するサブコンテンツ等のスペース
-    .info #{data.post}
+    //- .info #{data.post}
   section#related
     include ../_related
   section#recommend

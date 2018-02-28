@@ -32,43 +32,38 @@ main(role="main")
     ul.new-articles
       each post in data.posts.results
         li
-          mixin nai()
+          mixin naiIndex()
             div.new-article-image
               if post.image.exists
                 img(src=post._.image.fit()).img.pull-right
             div.new-article-introduction
-              h3.new-article-title= post.title
-              p.lead.text-muted Posted 
-                if post.publishedDate
-                  | on #{post._.publishedDate.format('YYYY年MM月DD日')} 
+              p.new-article-icon
                 if post.categories && post.categories.length
-                  | in 
                   each cat, i in post.categories
-                    span= cat.name
-                    if i < post.categories.length - 1
-                      | , 
-                    else
-                      |  
-                if post.author
-                  | by #{post.author.name.first}
-              p!= post.content.brief
-              if post.content.extended
-                p.read-more:  Read more...
-          if post.categories.length
-            a(href='/articles/' + post.categories[0].key + '/' + post.slug)
-              +nai()
+                    span= cat.japanese
+              h3.new-article-title= post.title
+              p.new-article-aside
+                span.date
+                  if post.publishedDate
+                    | #{post._.publishedDate.format('YYYY年MM月DD日')}
+                span.series
+                  | SERIES NAME
+                span.series-option
+                  | SERIES-OPTION
+                span.series-author
+                  if post.author
+                    | #{post.author.japanese}
+              p.new-article-description!= post.content.brief
+          if data.category
+            a(href='/articles/' + data.category.key + '/' + post.slug)
+              +naiIndex()
           else
-            a(href='/articles/' + '-' + '/' + post.slug)
-              +nai()
-    .pager
-      ul
-        li.current
-          a(href="#") 1
-        li
-          a(href="#") 2
-        li
-          a(href="#") 3
-        li
-          a(href="#") 4
-        li.next
-          a(href="#") 次へ
+            a(href='/articles/' + '-/' + post.slug)
+              +naiIndex()
+
+    if data.posts.totalPages > 1
+      .pager
+        ul
+          if data.posts.next
+            li.next: a(href='/articles/?page=' + data.posts.next)
+              span.glyphicon.glyphicon-chevron-right もっと見る

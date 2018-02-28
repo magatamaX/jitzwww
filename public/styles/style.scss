@@ -1226,6 +1226,9 @@ footer{
           color: #fff;
         }
       }
+      &.disabled{
+        display: none;
+      }
     }
   }
 }
