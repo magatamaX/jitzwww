@@ -24,7 +24,23 @@ var importRoutes = keystone.importer(__dirname);
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
+keystone.pre('routes', middleware.initErrorHandlers);
 keystone.pre('render', middleware.flashMessages);
+
+// Handle 404 Errors
+keystone.set('404', function (req, res, next) {
+  res.notfound();
+});
+
+// Handle other errors
+keystone.set('500', function (err, req, res, next) {
+  var title, message;
+  if (err instanceof Error) {
+    message = err.message;
+    err = err.stack;
+  }
+  res.err(err, title, message);
+});
 
 // Import Route Controllers
 var routes = {
@@ -36,11 +52,8 @@ exports = module.exports = function (app) {
   // Views
   app.get('/', routes.views.index);
   app.get('/articles/:category?', routes.views.blog);
-  app.get('/:category?', routes.views.blog);
   app.get('/articles/-/:post', routes.views.post);
   app.get('/articles/:category?/:post', routes.views.post);
-  app.get('/articles/:post', routes.views.post);
-  app.get('/:category?/:post', routes.views.post);
   app.get('/gallery', routes.views.gallery);
   app.all('/contact', routes.views.contact);
 
