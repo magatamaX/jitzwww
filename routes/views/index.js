@@ -18,6 +18,28 @@ exports = module.exports = function (req, res) {
     recommend: [],
   };
 
+  // Load the posts（トップのスライダー）
+  view.on('init', function(next) {
+    
+      var s = keystone.list('Post').paginate({
+        page: req.query.page || 1,
+        perPage: 5,
+        maxPages: 1,
+        filters: {
+          state: 'published',
+          slide: true,
+        },
+      })
+        .sort('-publishedDate')
+        .populate('author categories');
+
+      s.exec(function (err, results) {
+        locals.data.slide = results;
+        next(err);
+      });
+    
+  });
+  
   // Load the posts（おすすめエリア）
   view.on('init', function(next) {
     

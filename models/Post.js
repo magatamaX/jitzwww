@@ -19,6 +19,7 @@ Post.add({
   // subtitle: { type: String, label: 'サブタイトル' },
   state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true, label: '状態' },
   recommend: { type: Types.Boolean, index: true, label: 'おすすめに表示' },
+  slide: { type: Types.Boolean, index: true, label: 'トップのスライダーに表示' },
   author: { type: Types.Relationship, ref: 'Author', index: true, label: '著者' },
   user: { type: Types.Relationship, ref: 'User', index: true },
   publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
@@ -35,5 +36,5 @@ Post.schema.virtual('content.full').get(function () {
   return this.content.extended || this.content.brief;
 });
 
-Post.defaultColumns = 'title|40%, state|10%, author|20%, publishedDate|20%, recommend';
+Post.defaultColumns = 'title|40%, state|10%, author|20%, publishedDate|20%, recommend, slide';
 Post.register();

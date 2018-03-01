@@ -18,5 +18,5 @@ PostSeries.add({
 
 PostSeries.relationship({ ref: 'Post', path: 'posts', refPath: 'series' });
 
-PostSeries.defaultColumns = 'name, japanese, scompany';
+PostSeries.defaultColumns = 'name';
 PostSeries.register();

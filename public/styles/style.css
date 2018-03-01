@@ -777,6 +777,10 @@ header#header .header-contents-inner {
             #contents .main-contents #new .new-articles li a .new-article-introduction .new-article-aside .date {
               display: inline-block;
               margin-right: 1em; }
+            #contents .main-contents #new .new-articles li a .new-article-introduction .new-article-aside .series {
+              margin-right: 0.5em; }
+            #contents .main-contents #new .new-articles li a .new-article-introduction .new-article-aside .series-option {
+              margin-right: 0.5em; }
           #contents .main-contents #new .new-articles li a .new-article-introduction .new-article-description {
             color: #666; }
         #contents .main-contents #new .new-articles li a:hover .new-article-image img {

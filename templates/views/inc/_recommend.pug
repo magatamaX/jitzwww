@@ -5,10 +5,10 @@ ul.recommend-articles
       if post.categories.length
         a(href='/articles/' + post.categories[0].key + '/' + post.slug)
           if post.image.exists
-            img(src=post._.image.fit())
+            img(src=post._.image.thumbnail(230,173))
           span= post.title
       else
         a(href='/articles/' + '-/' + post.slug)
           if post.image.exists
-            img(src=post._.image.fit())
+            img(src=post._.image.crop())
           span= post.title

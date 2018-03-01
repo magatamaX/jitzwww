@@ -768,8 +768,12 @@ header{
                   display: inline-block;
                   margin-right: 1em;
                 }
-                .series{}
-                .series-option{}
+                .series{
+                  margin-right: 0.5em;
+                }
+                .series-option{
+                  margin-right: 0.5em;
+                }
               }
               .new-article-description{
                 color: #666;

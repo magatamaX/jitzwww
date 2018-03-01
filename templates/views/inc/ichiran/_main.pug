@@ -13,7 +13,7 @@ main(role="main")
         mixin naiIchiran()
           div.new-article-image
             if post.image.exists
-              img(src=post._.image.fit()).img.pull-right
+              img(src=post._.image.thumbnail(580,436)).img.pull-right
           div.new-article-introduction
             p.new-article-icon
               if post.categories && post.categories.length
@@ -24,16 +24,15 @@ main(role="main")
               span.date
                 if post.publishedDate
                   | #{post._.publishedDate.format('YYYY年MM月DD日')}
-              span.series
-                | SERIES NAME
-              span.series-option
-                | SERIES-OPTION
+              if post.series
+                span.series #{post.series.name}
+                span.series-option #{post.series.option}
               span.series-author
                 if post.author
                   | #{post.author.japanese}
             p.new-article-description!= post.content.brief
-        if data.category
-          a(href='/articles/' + data.category.key + '/' + post.slug)
+        if post.categories.length
+          a(href='/articles/' + post.categories[0].key + '/' + post.slug)
             +naiIchiran()
         else
           a(href='/articles/' + '-/' + post.slug)

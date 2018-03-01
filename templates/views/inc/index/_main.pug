@@ -2,26 +2,20 @@ main(role="main")
   section#main-slide
     .main-slide-area
       ul#slides.slides.active.clearfix
-        li#slide00
-          a(href="/article/01/01.html")
-            img(src="/images/common/730x425_01.jpg", alt="")
-            span この起業家精神が活路を拓く 中小企業は規模より&quot;質&quot;で勝負！
-        li#slide01
-          a(href="/article/01/02.html")
-            img(src="/images/common/730x425_02.jpg", alt="")
-            span この起業家精神が活路を拓く 得手分野を見定め、極めれば、アリも巨象に勝つ
-        li#slide02
-          a(href="/article/02/01.html")
-            img(src="/images/common/730x425_03.jpg", alt="")
-            span ハンコの基礎知識 印鑑、印章、印影…それぞれの意味は？
-        li#slide03
-          a(href="/article/02/02.html")
-            img(src="/images/common/730x425_04.jpg", alt="")
-            span ハンコの基礎知識 押印と捺印、記名と署名はどう違う？
-        li#slide04(data-clonedlist)
-          a(href="/article/03/01.html")
-            img(src="/images/common/730x425_05.jpg", alt="")
-            span 黄金の国ジパングは本当だった！金の産地を示す地名
+        each post in data.slide.results
+          li
+            mixin slideContents()
+              if post.image.exists
+                img(src=post._.image.thumbnail(730,425))
+              else
+                img(src="/images/common/730x425_01.jpg", alt="")
+              span #{post.title}
+            if post.categories.length
+              a(href='/articles/' + post.categories[0].key + '/' + post.slug)
+                +slideContents()
+            else
+              a(href='/articles/' + '-/' + post.slug)
+                +slideContents()
       #main-slide-btn
         a.slide-prev(href="#") 前へ
         a.slide-next(href="#") 次へ
@@ -35,7 +29,7 @@ main(role="main")
           mixin naiIndex()
             div.new-article-image
               if post.image.exists
-                img(src=post._.image.fit()).img.pull-right
+                img(src=post._.image.thumbnail(580,436)).img.pull-right
             div.new-article-introduction
               p.new-article-icon
                 if post.categories && post.categories.length
@@ -46,16 +40,15 @@ main(role="main")
                 span.date
                   if post.publishedDate
                     | #{post._.publishedDate.format('YYYY年MM月DD日')}
-                span.series
-                  | SERIES NAME
-                span.series-option
-                  | SERIES-OPTION
+                if post.series
+                  span.series #{post.series.name}
+                  span.series-option #{post.series.option}
                 span.series-author
                   if post.author
                     | #{post.author.japanese}
-              p.new-article-description!= post.content.brief
-          if data.category
-            a(href='/articles/' + data.category.key + '/' + post.slug)
+              .new-article-description!= post.content.brief
+          if post.categories.length
+            a(href='/articles/' + post.categories[0].key + '/' + post.slug)
               +naiIndex()
           else
             a(href='/articles/' + '-/' + post.slug)

@@ -28,7 +28,7 @@
 
     var slides = document.getElementById('slides');
     var slidesBtn = document.getElementById('main-slide-btn');
-    var clonedList = slides.querySelector('[data-clonedlist]');
+    var clonedList = slides.lastElementChild;
     var timerID = void 0;
 
     // 最後のスライドを一番前に移動する
