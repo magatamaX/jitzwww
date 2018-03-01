@@ -15,8 +15,8 @@ main(role="main")
           span.date= data.post._.publishedDate.format('YYYY年MM月DD日')
         .sns-area
       h2.article-title
-        if data.post.subtitle
-          span.sub-title #{data.post.subtitle}
+        if data.post.series
+          span.sub-title #{data.post.series.name}
         | #{data.post.title}
       if data.post.author
         .writer

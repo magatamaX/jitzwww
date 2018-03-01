@@ -16,7 +16,7 @@ var Post = new keystone.List('Post', {
 
 Post.add({
   title: { type: String, required: true, label: '記事タイトル' },
-  subtitle: { type: String, label: 'サブタイトル' },
+  // subtitle: { type: String, label: 'サブタイトル' },
   state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true, label: '状態' },
   recommend: { type: Types.Boolean, index: true, label: 'おすすめに表示' },
   author: { type: Types.Relationship, ref: 'Author', index: true, label: '著者' },
@@ -28,6 +28,7 @@ Post.add({
     extended: { type: Types.Html, wysiwyg: true, height: 800 },
   },
   categories: { type: Types.Relationship, ref: 'PostCategory', many: true },
+  series: { type: Types.Relationship, ref: 'PostSeries', index: true },
 });
 
 Post.schema.virtual('content.full').get(function () {

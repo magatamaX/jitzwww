@@ -24,7 +24,7 @@ exports = module.exports = function (req, res) {
 		var q = keystone.list('Post').model.findOne({
 			state: 'published',
 			slug: locals.filters.post,
-		}).populate('author categories');
+		}).populate('author categories series');
 
 		q.exec(function (err, result) {
 			locals.data.post = result;
@@ -46,7 +46,7 @@ exports = module.exports = function (req, res) {
     }
   });
 
-	// Load other posts
+	// Load Recommend posts
 	view.on('init', function (next) {
 
     var r = keystone.list('Post').paginate({
