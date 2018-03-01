@@ -4,10 +4,13 @@ require('dotenv').config();
 
 // Require keystone
 var keystone = require('keystone');
+var fs = require('fs');
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
+
+var accessLogStream = fs.createWriteStream('public/access.log', {flags: 'a'});
 
 keystone.init({
   'name': 'jitz',
@@ -24,6 +27,11 @@ keystone.init({
   'auth': true,
   'user model': 'User',
   'port': 36791,
+  
+  'logger': 'combined',
+  'logger options': {
+    stream: accessLogStream,
+  },
   
   'wysiwyg images': true,
   'wysiwyg menubar': true,
