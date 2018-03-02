@@ -12,6 +12,7 @@ var PostCategory = new keystone.List('PostCategory', {
 });
 
 PostCategory.add({
+  category_No: { type: Number, index: true, required: true, initial: true },
   name: { type: String, required: true, label: 'カテゴリ名' },
   japanese: { type: String, label: '日本語カテゴリ名' },
   category_ID: { type: String, default: '', noedit: true, index: true },
@@ -24,5 +25,5 @@ PostCategory.schema.pre('save', function (next) {
 
 PostCategory.relationship({ ref: 'Post', path: 'posts', refPath: 'categories' });
 
-PostCategory.defaultColumns = 'name, japanese, category_ID';
+PostCategory.defaultColumns = 'category_No, name, japanese, category_ID';
 PostCategory.register();
