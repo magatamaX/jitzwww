@@ -26,7 +26,11 @@ main(role="main")
                   | #{post._.publishedDate.format('YYYY年MM月DD日')}
               if post.series
                 span.series #{post.series.name}
-                span.series-option #{post.series.option}
+                span.series-option
+                  if post.seriesCount
+                    | 第#{post.seriesCount}回
+                    if post.isSeriesFinal
+                      |（最終回）
               span.series-author
                 if post.author
                   | #{post.author.japanese}

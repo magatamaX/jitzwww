@@ -13,7 +13,9 @@ var PostSeries = new keystone.List('PostSeries', {
 });
 
 PostSeries.add({
-  name: { type: String, required: true, index: true, label: 'シリーズ名' },
+  name: { type: String, required: true, index: true, label: '連載名' },
+  max: { type: Number, label: '連載全回数'},
+  banner: { type: Types.CloudinaryImage },
 });
 
 PostSeries.relationship({ ref: 'Post', path: 'posts', refPath: 'series' });
