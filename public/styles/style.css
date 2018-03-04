@@ -942,18 +942,6 @@ header#header .header-contents-inner {
             @media screen and (max-width: 768px) {
               #contents .side-contents #ranking .ranking-articles li a .ranking-article-image {
                 padding-right: 10px; } }
-            #contents .side-contents #ranking .ranking-articles li a .ranking-article-image:before {
-              display: block;
-              position: absolute;
-              content: '';
-              top: 0;
-              left: 0;
-              color: #fff;
-              width: 20px;
-              height: 20px;
-              background: #000;
-              z-index: 1;
-              text-align: center; }
             #contents .side-contents #ranking .ranking-articles li a .ranking-article-image img {
               width: 100%;
               height: auto;
@@ -974,17 +962,6 @@ header#header .header-contents-inner {
           #contents .side-contents #ranking .ranking-articles li a .ranking-article-title {
             font-size: 16px;
             font-weight: bold; }
-        #contents .side-contents #ranking .ranking-articles li:first-child a .ranking-article-image:before {
-          content: '1';
-          background: red; }
-        #contents .side-contents #ranking .ranking-articles li:nth-child(2) a .ranking-article-image:before {
-          content: '2'; }
-        #contents .side-contents #ranking .ranking-articles li:nth-child(3) a .ranking-article-image:before {
-          content: '3'; }
-        #contents .side-contents #ranking .ranking-articles li:nth-child(4) a .ranking-article-image:before {
-          content: '4'; }
-        #contents .side-contents #ranking .ranking-articles li:nth-child(5) a .ranking-article-image:before {
-          content: '5'; }
     #contents .side-contents .ad-area {
       margin-bottom: 20px; }
       #contents .side-contents .ad-area a {
@@ -1114,29 +1091,27 @@ footer#footer {
           margin-bottom: 20px; }
         footer#footer .footer-contents .bottom-navigation li dl dd ul li a:hover {
           text-decoration: underline; }
-    footer#footer .footer-contents .bottom-asidenavi {
-      margin-top: 60px; }
-      footer#footer .footer-contents .bottom-asidenavi ul {
-        text-align: center; }
-        footer#footer .footer-contents .bottom-asidenavi ul li {
-          display: inline-block;
-          padding: 0 2em;
-          border-left: 1px solid #ccc; }
+    footer#footer .footer-contents .bottom-asidenavi ul {
+      text-align: center; }
+      footer#footer .footer-contents .bottom-asidenavi ul li {
+        display: inline-block;
+        padding: 0 2em;
+        border-left: 1px solid #ccc; }
+        @media screen and (max-width: 768px) {
+          footer#footer .footer-contents .bottom-asidenavi ul li {
+            display: block; } }
+        footer#footer .footer-contents .bottom-asidenavi ul li:first-child {
+          border-left: 0; }
           @media screen and (max-width: 768px) {
-            footer#footer .footer-contents .bottom-asidenavi ul li {
-              display: block; } }
-          footer#footer .footer-contents .bottom-asidenavi ul li:first-child {
-            border-left: 0; }
-            @media screen and (max-width: 768px) {
-              footer#footer .footer-contents .bottom-asidenavi ul li:first-child a {
-                border-top: 1px solid #333; } }
-          @media screen and (max-width: 768px) {
-            footer#footer .footer-contents .bottom-asidenavi ul li a {
-              display: block;
-              padding: 1em 0;
-              border-bottom: 1px solid #333; } }
-          footer#footer .footer-contents .bottom-asidenavi ul li a:hover {
-            text-decoration: underline; }
+            footer#footer .footer-contents .bottom-asidenavi ul li:first-child a {
+              border-top: 1px solid #333; } }
+        @media screen and (max-width: 768px) {
+          footer#footer .footer-contents .bottom-asidenavi ul li a {
+            display: block;
+            padding: 1em 0;
+            border-bottom: 1px solid #333; } }
+        footer#footer .footer-contents .bottom-asidenavi ul li a:hover {
+          text-decoration: underline; }
   footer#footer .copyright {
     background: #2E8622;
     color: #fff;

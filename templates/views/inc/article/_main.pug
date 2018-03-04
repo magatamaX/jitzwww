@@ -37,8 +37,8 @@ main(role="main")
           p: img(src=data.post._.image.fit(), alt="")
       section.text
         != data.post.content.full
-    .article-subcontents
-      p ※著者に関連するサブコンテンツ等のスペース
+    //- .article-subcontents
+    //-   p ※著者に関連するサブコンテンツ等のスペース
     //- .info #{data.post}
   section#related
     include ../_related

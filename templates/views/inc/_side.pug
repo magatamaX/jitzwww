@@ -1,48 +1,60 @@
 section#ranking
-  h2 人気ランキング
+  //- h2 人気ランキング
+  //- ol.ranking-articles
+  //-   li
+  //-     a(href="/article/01/01.html")
+  //-       .ranking-article-image
+  //-         img(src="/images/common/100x100_01.jpg", alt="")
+  //-       .ranking-article-introduction
+  //-         p.ranking-article-icon
+  //-           span.houmu 法務
+  //-           span.business ビジネス
+  //-         p.ranking-article-title 中小企業は規模より&quot;質&quot;で勝負！
+  //-   li
+  //-     a(href="/article/01/02.html")
+  //-       .ranking-article-image
+  //-         img(src="/images/common/100x100_02.jpg", alt="")
+  //-       .ranking-article-introduction
+  //-         p.ranking-article-icon
+  //-           span.zeimu 税務
+  //-         p.ranking-article-title 得手分野を見定め、極めれば、アリも巨象に勝つ
+  //-   li
+  //-     a(href="/article/02/01.html")
+  //-       .ranking-article-image
+  //-         img(src="/images/common/100x100_03.jpg", alt="")
+  //-       .ranking-article-introduction
+  //-         p.ranking-article-icon
+  //-           span.roumu 労務
+  //-           span.kisochishiki 基礎知識
+  //-         p.ranking-article-title 印鑑、印章、印影…それぞれの意味は？
+  //-   li
+  //-     a(href="/article/02/02.html")
+  //-       .ranking-article-image
+  //-         img(src="/images/common/100x100_04.jpg", alt="")
+  //-       .ranking-article-introduction
+  //-         p.ranking-article-icon
+  //-           span.skill スキル
+  //-         p.ranking-article-title 押印と捺印、記名と署名はどう違う？
+  //-   li
+  //-     a(href="/article/03/01.html")
+  //-       .ranking-article-image
+  //-         img(src="/images/common/100x100_05.jpg", alt="")
+  //-       .ranking-article-introduction
+  //-         p.ranking-article-icon
+  //-           span.senmonkacolumn 専門家コラム
+  //-         p.ranking-article-title 黄金の国ジパングは本当だった！金の産地を示す地名
+  h2 ピックアップ
   ol.ranking-articles
-    li
-      a(href="/article/01/01.html")
-        .ranking-article-image
-          img(src="/images/common/100x100_01.jpg", alt="")
-        .ranking-article-introduction
-          p.ranking-article-icon
-            span.houmu 法務
-            span.business ビジネス
-          p.ranking-article-title 中小企業は規模より&quot;質&quot;で勝負！
-    li
-      a(href="/article/01/02.html")
-        .ranking-article-image
-          img(src="/images/common/100x100_02.jpg", alt="")
-        .ranking-article-introduction
-          p.ranking-article-icon
-            span.zeimu 税務
-          p.ranking-article-title 得手分野を見定め、極めれば、アリも巨象に勝つ
-    li
-      a(href="/article/02/01.html")
-        .ranking-article-image
-          img(src="/images/common/100x100_03.jpg", alt="")
-        .ranking-article-introduction
-          p.ranking-article-icon
-            span.roumu 労務
-            span.kisochishiki 基礎知識
-          p.ranking-article-title 印鑑、印章、印影…それぞれの意味は？
-    li
-      a(href="/article/02/02.html")
-        .ranking-article-image
-          img(src="/images/common/100x100_04.jpg", alt="")
-        .ranking-article-introduction
-          p.ranking-article-icon
-            span.skill スキル
-          p.ranking-article-title 押印と捺印、記名と署名はどう違う？
-    li
-      a(href="/article/03/01.html")
-        .ranking-article-image
-          img(src="/images/common/100x100_05.jpg", alt="")
-        .ranking-article-introduction
-          p.ranking-article-icon
-            span.senmonkacolumn 専門家コラム
-          p.ranking-article-title 黄金の国ジパングは本当だった！金の産地を示す地名
+    each category in data.navigations
+      li
+        a(href='/articles/' + category.key + '/' + category.categoryPostsOrdered[0].slug)
+          .ranking-article-image
+            if category.categoryPostsOrdered[0].image.exists
+              img(src=category.categoryPostsOrdered[0]._.image.thumbnail(100,100))
+          .ranking-article-introduction
+            p.ranking-article-icon
+              span.senmonkacolumn #{category.japanese}
+            p.ranking-article-title #{category.categoryPostsOrdered[0].title}
 section.ad-area
   p
     a(href="#")
@@ -54,54 +66,54 @@ section.banner-area
   p.banner
     a(href="#")
       img(src="/images/common/bnr02.jpg", alt="")
-section#experts
-  h2 専門家紹介
-  ul
-    li
-      a(href="#")
-        .experts-image
-          p
-            img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc01", alt="")
-        .experts-personality
-          p.experts-category 弁護士
-          p.experts-name 丸山 丸男
-          p.experts-office （丸川事務所 所属）
-    li
-      a(href="#")
-        .experts-image
-          p
-            img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc02", alt="")
-        .experts-personality
-          p.experts-category 弁護士
-          p.experts-name 丸山 丸男
-          p.experts-office （丸川事務所 所属）
-    li
-      a(href="#")
-        .experts-image
-          p
-            img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc03", alt="")
-        .experts-personality
-          p.experts-category 弁護士
-          p.experts-name 丸山 丸男
-          p.experts-office （丸川事務所 所属）
-    li
-      a(href="#")
-        .experts-image
-          p
-            img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc04", alt="")
-        .experts-personality
-          p.experts-category 弁護士
-          p.experts-name 丸山 丸男
-          p.experts-office （丸川事務所 所属）
-    li
-      a(href="#")
-        .experts-image
-          p
-            img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc05", alt="")
-        .experts-personality
-          p.experts-category 弁護士
-          p.experts-name 丸山 丸男
-          p.experts-office （丸川事務所 所属）
+//- section#experts
+//-   h2 専門家紹介
+//-   ul
+//-     li
+//-       a(href="#")
+//-         .experts-image
+//-           p
+//-             img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc01", alt="")
+//-         .experts-personality
+//-           p.experts-category 弁護士
+//-           p.experts-name 丸山 丸男
+//-           p.experts-office （丸川事務所 所属）
+//-     li
+//-       a(href="#")
+//-         .experts-image
+//-           p
+//-             img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc02", alt="")
+//-         .experts-personality
+//-           p.experts-category 弁護士
+//-           p.experts-name 丸山 丸男
+//-           p.experts-office （丸川事務所 所属）
+//-     li
+//-       a(href="#")
+//-         .experts-image
+//-           p
+//-             img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc03", alt="")
+//-         .experts-personality
+//-           p.experts-category 弁護士
+//-           p.experts-name 丸山 丸男
+//-           p.experts-office （丸川事務所 所属）
+//-     li
+//-       a(href="#")
+//-         .experts-image
+//-           p
+//-             img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc04", alt="")
+//-         .experts-personality
+//-           p.experts-category 弁護士
+//-           p.experts-name 丸山 丸男
+//-           p.experts-office （丸川事務所 所属）
+//-     li
+//-       a(href="#")
+//-         .experts-image
+//-           p
+//-             img(src="http://via.placeholder.com/80x80/283962/fff/?text=spc05", alt="")
+//-         .experts-personality
+//-           p.experts-category 弁護士
+//-           p.experts-name 丸山 丸男
+//-           p.experts-office （丸川事務所 所属）
 section.ad-area
   p
     a(href="#")

@@ -17,6 +17,7 @@ exports = module.exports = function (req, res) {
     categories: [],
     recommend: [],
 		navigations: [],
+		relates: [],
 	};
 
 	// Load the current post
@@ -46,6 +47,45 @@ exports = module.exports = function (req, res) {
       next();
     }
   });
+
+	// Load other posts
+	view.on('init', function (next) {
+
+		var _filters;
+
+		if(!req.params.category){
+			_filters = {
+				state: 'published',
+			};
+		} else {
+			_filters = {
+				state: 'published',
+				categories: locals.data.category,
+				slug: {
+					'$ne': locals.filters.post,
+				},
+			};
+		}
+
+		var o = keystone.list('Post').paginate({
+			page: req.query.page || 1,
+			perPage: 3,
+			maxPages: 1,
+			filters: _filters,
+		})
+			.sort('-publishedDate')
+			.populate('author categories series');
+
+		if (locals.data.category) {
+			o.where('categories').in([locals.data.category]);
+		}
+
+		o.exec(function (err, results) {
+			locals.data.relates = results;
+			next(err);
+		});
+
+	});
 
 	// Load Recommend posts
 	view.on('init', function (next) {

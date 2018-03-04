@@ -34,7 +34,6 @@ exports = module.exports = function (req, res) {
 
         keystone.list('Post').model.count().where('categories').in([category.id]).exec(function (err, count) {
           category.postCount = count;
-          console.log('----------------'+category.japanese, count+'------------------');
           next(err);
         });
 
@@ -61,8 +60,6 @@ exports = module.exports = function (req, res) {
   view.on('init', function (next) {
 
     var _filters;
-
-    console.log(locals.data.category);
 
     if(!req.params.category){
       _filters = {
