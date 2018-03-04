@@ -15,6 +15,7 @@ exports = module.exports = function (req, res) {
   locals.data = {
     posts: [],
     categories: [],
+    navigations: [],
   };
 
   // Load all categories
@@ -58,11 +59,11 @@ exports = module.exports = function (req, res) {
 
   // Load the posts
   view.on('init', function (next) {
-    
+
     var _filters;
 
     console.log(locals.data.category);
-    
+
     if(!req.params.category){
       _filters = {
         state: 'published',
@@ -92,6 +93,59 @@ exports = module.exports = function (req, res) {
       next(err);
     });
 
+  });
+
+  /* ------------------------------
+    ヘッダナビゲーション
+  -- --------------------------- */
+  // Load all categories
+  view.on('init', function (next) {
+
+    keystone.list('PostCategory').model.find().sort('category_No').exec(function (err, results) {
+
+      if (err || !results.length) {
+        return next(err);
+      }
+
+      locals.data.navigations = results;
+
+      // Load the posts for each category
+      async.each(locals.data.navigations, function (category, next) {
+
+        // recommend area
+        keystone.list('Post').model.find({
+          state: 'published',
+          recommend: true,
+        })
+        .sort('-publishedDate')
+        .where('categories')
+        .in([category.id])
+        .limit(6)
+        .exec(function (err, results) {
+
+          category.categoryPostsRecommend = results;
+
+          // new posts area
+          keystone.list('Post').model.find({
+            state: 'published',
+          })
+          .sort('-publishedDate')
+          .where('categories')
+          .in([category.id])
+          .limit(5)
+          .exec(function (err, results) {
+
+            category.categoryPostsOrdered = results;
+
+            next(err);
+          });
+
+        });
+
+      }, function (err) {
+        next(err);
+      });
+    });
   });
 
   // Render the view

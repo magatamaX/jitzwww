@@ -2,73 +2,28 @@ nav#page-navi
   //- if data.navigations.results
   //-   p #{data.navigations}
   ul
-    li
-      a(href="/articles/legal/") 法務
-        .page-navi-inner-wrap
-          .page-navi-inner
-            .page-navi-inner-recommend
-              ul
-                li
-                  a(href="/article/01/01.html")
-                    img(src="/images/common/230x173_01.jpg", alt="")
-                    span 中小企業は規模より&quot;質&quot;で勝負！
-                li
-                  a(href="/article/01/02.html")
-                    img(src="/images/common/230x173_02.jpg", alt="")
-                    span 得手分野を見定め、極めれば、アリも巨象に勝つ
-                li
-                  a(href="/article/02/01.html")
-                    img(src="/images/common/230x173_03.jpg", alt="")
-                    span 印鑑、印章、印影…それぞれの意味は？
-                li
-                  a(href="/article/02/02.html")
-                    img(src="/images/common/230x173_04.jpg", alt="")
-                    span 押印と捺印、記名と署名はどう違う？
-                li
-                  a(href="/article/03/01.html")
-                    img(src="/images/common/230x173_05.jpg", alt="")
-                    span 黄金の国ジパングは本当だった！金の産地を示す地名
-                li
-                  a(href="/article/03/02.html")
-                    img(src="/images/common/230x173_06.jpg", alt="")
-                    span 色がつく地名の近くに金銀銅山あり!?
-            .page-navi-inner-new
-              ul
-                li
-                  a(href="/article/01/01.html")
-                    img(src="/images/common/100x100_01.jpg", alt="")
-                    span 中小企業は規模より&quot;質&quot;で勝負！
-                li
-                  a(href="/article/01/02.html")
-                    img(src="/images/common/100x100_02.jpg", alt="")
-                    span 得手分野を見定め、極めれば、アリも巨象に勝つ
-                li
-                  a(href="/article/02/01.html")
-                    img(src="/images/common/100x100_03.jpg", alt="")
-                    span 印鑑、印章、印影…それぞれの意味は？
-                li
-                  a(href="/article/02/02.html")
-                    img(src="/images/common/100x100_04.jpg", alt="")
-                    span 押印と捺印、記名と署名はどう違う？
-                li
-                  a(href="/article/03/01.html")
-                    img(src="/images/common/100x100_05.jpg", alt="")
-                    span 黄金の国ジパングは本当だった！金の産地を示す地名
-    li
-      a(href="/articles/tax/") 税務
-      include _pageNaviInner2
-    li
-      a(href="/articles/labor/") 労務
-      include _pageNaviInner
-    li
-      a(href="/articles/skill/") スキル
-      include _pageNaviInner2
-    li
-      a(href="/articles/business/") ビジネス
-      include _pageNaviInner
-    li
-      a(href="/articles/knowledge/") 基礎知識
-      include _pageNaviInner2
-    li
-      a(href="/articles/column/") 専門家コラム
-      include _pageNaviInner
+    each category in data.navigations
+      li
+        a(href="/articles/"+category.key) #{category.japanese}
+          .page-navi-inner-wrap
+            .page-navi-inner
+              .page-navi-inner-recommend
+                if !category.categoryPostsRecommend
+                  p このカテゴリのおすすめ記事はまだ投稿されていません。
+                else
+                  ul
+                    each post in category.categoryPostsRecommend
+                      li
+                        a(href='/articles/' + category.key + '/' + post.slug)
+                          if post.image.exists
+                            img(src=post._.image.thumbnail(580,436))
+                          //- img(src="/images/common/230x173_01.jpg", alt="")
+                          span #{post.title}
+              .page-navi-inner-new
+                ul
+                  each post in category.categoryPostsOrdered
+                    li
+                      a(href='/articles/' + category.key + '/' + post.slug)
+                        if post.image.exists
+                          img(src=post._.image.thumbnail(100,100))
+                        span #{post.title}

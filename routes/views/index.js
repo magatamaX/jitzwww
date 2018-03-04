@@ -22,7 +22,7 @@ exports = module.exports = function (req, res) {
 
   // Load the posts（トップのスライダー）
   view.on('init', function(next) {
-    
+
       var s = keystone.list('Post').paginate({
         page: req.query.page || 1,
         perPage: 5,
@@ -39,12 +39,12 @@ exports = module.exports = function (req, res) {
         locals.data.slide = results;
         next(err);
       });
-    
+
   });
-  
+
   // Load the posts（おすすめエリア）
   view.on('init', function(next) {
-    
+
       var r = keystone.list('Post').paginate({
         page: req.query.page || 1,
         perPage: 6,
@@ -61,7 +61,7 @@ exports = module.exports = function (req, res) {
         locals.data.recommend = results;
         next(err);
       });
-    
+
   });
 
   // Load the posts（新着記事エリア）
@@ -88,7 +88,7 @@ exports = module.exports = function (req, res) {
       });
 
   });
-  
+
   /* ------------------------------
     ヘッダナビゲーション
   -- --------------------------- */
@@ -101,67 +101,47 @@ exports = module.exports = function (req, res) {
         return next(err);
       }
 
-      locals.data.categories = results;
-
-      next();
-    });
-  });
-  
-  view.on('init', function(next) {
-    
-    // console.log(locals.data.categories.length);
-    
-    var cat_ary = [];
-    var cat = locals.data.categories;
-    var ldcl = locals.data.categories.length;
-    var query;
-    
-    for ( var i=0; i<ldcl; i++ ){
-      
-      cat_ary.push(cat[i]._id);
-      
-    }
-    console.log(cat_ary);
-    
-    // var query = keystone.list('Post').model.find().where('categories').populate('categories').sort('-publishedDate').limit(20);
-    var query = keystone.list('Post').model.where('category_No').populate('categories').find({"category_No":"5"}).sort('-publishedDate').limit(5);
-    // var t = keystone.list('Post').model.find({
-    //   categories : {
-    //     category_No : 2,
-    //   },
-    // }).limit(6)
-    
-    // var t = keystone.list('Post').paginate({
-    //   page: 1,
-    //   perPage: 6,
-    //   maxPages: 1,
-    //   filters: {
-    //     state: 'published',
-    //     categories: locals.data.category,
-    //   },
-    // })
-    //   .sort('-publishedDate')
-    //   .populate('categories');
-    // 
-    // if (locals.data.category) {
-    //   t.where('categories').in([locals.data.category]);
-    // }
-
-    query.exec(function (err, results) {
       locals.data.navigations = results;
-      for (var j=0; j<5; j++){
-        console.log(results[j].categories[0].category_No);
-      }
-      next(err);
+
+      // Load the posts for each category
+      async.each(locals.data.navigations, function (category, next) {
+
+        // recommend area
+        keystone.list('Post').model.find({
+          state: 'published',
+          recommend: true,
+        })
+        .sort('-publishedDate')
+        .where('categories')
+        .in([category.id])
+        .limit(6)
+        .exec(function (err, results) {
+
+          category.categoryPostsRecommend = results;
+
+          // new posts area
+          keystone.list('Post').model.find({
+            state: 'published',
+          })
+          .sort('-publishedDate')
+          .where('categories')
+          .in([category.id])
+          .limit(5)
+          .exec(function (err, results) {
+
+            category.categoryPostsOrdered = results;
+
+            next(err);
+          });
+
+        });
+
+      }, function (err) {
+        next(err);
+      });
     });
-    // console.log(locals.data.categories);
-    
-    
-    // next();
-    
   });
-  
-  
+
 
   // Render the view
   view.render('index');

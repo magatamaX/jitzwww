@@ -9,6 +9,7 @@ var PostCategory = new keystone.List('PostCategory', {
   autokey: { from: 'name', path: 'key', unique: true },
   label: 'カテゴリ',
   plural: 'カテゴリ',
+  defaultSort: 'category_No',
 });
 
 PostCategory.add({
