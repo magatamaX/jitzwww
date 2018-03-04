@@ -45,16 +45,17 @@ section#ranking
   //-         p.ranking-article-title 黄金の国ジパングは本当だった！金の産地を示す地名
   h2 ピックアップ
   ol.ranking-articles
-    each category in data.navigations
-      li
-        a(href='/articles/' + category.key + '/' + category.categoryPostsOrdered[0].slug)
-          .ranking-article-image
-            if category.categoryPostsOrdered[0].image.exists
-              img(src=category.categoryPostsOrdered[0]._.image.thumbnail(100,100))
-          .ranking-article-introduction
-            p.ranking-article-icon
-              span.senmonkacolumn #{category.japanese}
-            p.ranking-article-title #{category.categoryPostsOrdered[0].title}
+    if data.navigations
+      each category in data.navigations
+        li
+          a(href='/articles/' + category.key + '/')
+            .ranking-article-image
+              if category.categoryPostsOrdered[0].image.exists
+                img(src=category.categoryPostsOrdered[0]._.image.thumbnail(100,100))
+            .ranking-article-introduction
+              p.ranking-article-icon
+                span.senmonkacolumn #{category.japanese}
+              p.ranking-article-title #{category.categoryPostsOrdered[0].title}
 section.ad-area
   p
     a(href="#")

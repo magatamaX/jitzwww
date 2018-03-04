@@ -13,7 +13,7 @@ var fs = require('fs');
 var accessLogStream = fs.createWriteStream('public/access.log', {flags: 'a'});
 
 keystone.init({
-  'name': 'jitz',
+  'name': 'jitzwww',
   'brand': '実務家Link',
 
   'sass': 'public',
@@ -27,12 +27,12 @@ keystone.init({
   'auth': true,
   'user model': 'User',
   'port': 36791,
-  
+
   'logger': 'combined',
   'logger options': {
     stream: accessLogStream,
   },
-  
+
   'wysiwyg images': true,
   'wysiwyg menubar': true,
 
