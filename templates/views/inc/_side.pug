@@ -48,7 +48,7 @@ section#ranking
     if data.navigations
       each category in data.navigations
         li
-          a(href='/articles/' + category.key + '/')
+          a(href='/articles/' + category.key + '/' + category.categoryPostsOrdered[0].slug)
             .ranking-article-image
               if category.categoryPostsOrdered[0].image.exists
                 img(src=category.categoryPostsOrdered[0]._.image.thumbnail(100,100))
@@ -57,9 +57,9 @@ section#ranking
                 span.senmonkacolumn #{category.japanese}
               p.ranking-article-title #{category.categoryPostsOrdered[0].title}
 section.ad-area
-  p
-    a(href="#")
-      img(src="/images/common/ad_300x250_placehold.jpg", alt="")
+  //- p
+  //-   a(href="#")
+  //-     img(src="/images/common/ad_300x250_placehold.jpg", alt="")
 section.banner-area
   p.banner
     a(href="#")
@@ -116,9 +116,9 @@ section.banner-area
 //-           p.experts-name 丸山 丸男
 //-           p.experts-office （丸川事務所 所属）
 section.ad-area
-  p
-    a(href="#")
-      img(src="/images/common/ad_300x250_placehold02.png", alt="")
+  //- p
+  //-   a(href="#")
+  //-     img(src="/images/common/ad_300x250_placehold02.png", alt="")
 section#twitter
   .
     <a class="twitter-timeline" height="500px" data-lang="ja" data-theme="light" href="https://twitter.com/magatama_z?ref_src=twsrc%5Etfw">Tweets by magatama_z</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
