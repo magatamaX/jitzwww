@@ -28,7 +28,7 @@ keystone.init({
   'auth': true,
   'user model': 'User',
   'port': 36791,
-  
+
   'ga property': process.env.GA_PROPERTY,
   'ga domain': process.env.GA_DOMAIN,
 
@@ -39,6 +39,8 @@ keystone.init({
 
   'wysiwyg images': true,
   'wysiwyg menubar': true,
+
+  'trust proxy' : true,
 
 });
 
