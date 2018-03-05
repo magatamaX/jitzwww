@@ -23,10 +23,14 @@ keystone.init({
   'view engine': 'pug',
 
   'auto update': true,
+  'mongo': process.env.MONGO_URI || 'mongodb://jitzuser:4V1CV>uyl}M.8h+D@localhost/jitzwww',
   'session': true,
   'auth': true,
   'user model': 'User',
   'port': 36791,
+  
+  'ga property': process.env.GA_PROPERTY,
+  'ga domain': process.env.GA_DOMAIN,
 
   'logger': 'combined',
   'logger options': {
